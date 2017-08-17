@@ -1,3 +1,5 @@
+-- source: https://meta.discourse.org/t/43516/30
+
 SELECT 
     sum(p.score) / count(p) as "average score per post", 
     count(p.id) as post_count, 
