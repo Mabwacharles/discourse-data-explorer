@@ -19,8 +19,12 @@
 * Users active in last x days [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-active.sql)
 * Who has been sending the most messages in the last week? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/user-most-pm-last-w.sql)
 * User’s directory [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/user-directory.sql)
-
+* User's stats [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/user-stats.sql)
+* Who is making SOLVED [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/who-is-marking-solved.sql)
+* Solved stats per user [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/solved-stats-per-user.sql)
 <!---
+* [SQL]()
+* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
