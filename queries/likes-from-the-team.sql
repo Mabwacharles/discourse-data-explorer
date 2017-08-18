@@ -1,5 +1,6 @@
 -- https://meta.discourse.org/t/43516/5?u=sidv 
--- This query assumes there is a group called team, and gives you the likes other users have received, split into likes from the team and likes from others
+-- This query assumes there is a group called team, and gives you the likes other users have received, 
+-- split into likes from the team and likes from others
 
 SELECT
     pl.user_id,
