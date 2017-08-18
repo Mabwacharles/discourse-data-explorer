@@ -30,6 +30,8 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Who is making SOLVED [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/who-is-marking-solved.sql)
 * Solved stats per user [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/solved-stats-per-user.sql)
 * Most Common Likers [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/most-common-likers.sql)
+
+
 <!---
 * [SQL]()
 * [SQL]()
@@ -58,3 +60,17 @@ AND p.user_id = :user_id
 -- ...
 LIMIT :limit
 ```
+
+## Errors
+:warning: For new errors please [open a issue here](https://github.com/SidVal/discourse-data-explorer/issues) and PUT the URL from [meta discussion from discourse.org](https://meta.discourse.org)
+
+**Note!** There are some strange problem with `int` parameter:
+[![](https://meta-s3-cdn.global.ssl.fastly.net/original/3X/8/9/890aed880946c4bdb02f7af0f585dea8c6e6aa86.png)](https://meta.discourse.org/t/strange-problem-with-data-explorer/57751)
+
+If you have that error, please delete the value declaration for int parameters.
+
+For example, for 
+`-- int :limit = 150` :arrow_right: `-- int :limit` 
+
+And do not forget to save query, and complete the parameter before execute it.
+
