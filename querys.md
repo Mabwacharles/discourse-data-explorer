@@ -16,9 +16,9 @@
 * Likes from the team [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/likes-from-the-team.sql)
 * Recently Read Topics by User [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/recently-read-topics.sql)
 * Member Uploads [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/member-uploads.sql)
-* Users active in last x days [SQL](users-active.sql)
+* Users active in last x days [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-active.sql)
 * Who has been sending the most messages in the last week? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/user-most-pm-last-w.sql)
-* User’s directory [SQL](user-directory.sql)
+* User’s directory [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/user-directory.sql)
 
 <!---
 * [SQL]()
