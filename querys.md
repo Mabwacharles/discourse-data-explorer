@@ -1,3 +1,10 @@
+---
+This plugin allows admins to run SQL queries against the live Discourse database, 
+including parameterized queries and formatting for several common column types.
+
+More info: https://meta.discourse.org/t/data-explorer-plugin/32566
+---
+
 # List of Queries
 
 * Fetch top 10 posts by likes received in the last month [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-posts-by-likes.sql)
