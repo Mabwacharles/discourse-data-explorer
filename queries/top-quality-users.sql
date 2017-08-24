@@ -1,4 +1,5 @@
 -- source: https://meta.discourse.org/t/43516/30
+-- Post scores are calculated based on reply count, likes, incoming links, bookmarks, average time (reading?) and read count.
 
 SELECT 
     sum(p.score) / count(p) as "average score per post", 
