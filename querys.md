@@ -64,8 +64,9 @@ LIMIT :limit
 ## Errors
 :warning: For new errors please [open a issue here](https://github.com/SidVal/discourse-data-explorer/issues) and PUT the URL from [meta discussion from discourse.org](https://meta.discourse.org)
 
-**Note!** There are some strange problem with `int` parameter:
-[![](https://meta-s3-cdn.global.ssl.fastly.net/original/3X/8/9/890aed880946c4bdb02f7af0f585dea8c6e6aa86.png)](https://meta.discourse.org/t/strange-problem-with-data-explorer/57751)
+**Note!** There are some strange problem with `int` parameter -reported _[here](https://meta.discourse.org/t/strange-problem-with-data-explorer/57751?u=sidv)_:
+
+[![](https://meta-s3-cdn.global.ssl.fastly.net/original/3X/8/9/890aed880946c4bdb02f7af0f585dea8c6e6aa86.png)](https://meta.discourse.org/t/strange-problem-with-data-explorer/57751?u=sidv)
 
 If you have that error, please delete the value declaration for int parameters.
 
