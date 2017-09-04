@@ -757,7 +757,7 @@ SQL
       when :int
         invalid_format string, 'Not an integer' unless string =~ /^-?\d+$/
         value = string.to_i
-        invalid_format string, 'Too large' unless Fixnum === value
+        invalid_format string, 'Too large' unless Integer === value
       when :bigint
         invalid_format string, 'Not an integer' unless string =~ /^-?\d+$/
         value = string.to_i
@@ -919,7 +919,7 @@ SQL
   class DataExplorer::QueryController < ::ApplicationController
     requires_plugin DataExplorer.plugin_name
 
-    before_filter :check_enabled
+    before_action :check_enabled
 
     def check_enabled
       raise Discourse::NotFound unless SiteSetting.data_explorer_enabled?
@@ -931,7 +931,7 @@ SQL
       render_serialized queries, DataExplorer::QuerySerializer, root: 'queries'
     end
 
-    skip_before_filter :check_xhr, only: [:show]
+    skip_before_action :check_xhr, only: [:show]
     def show
       check_xhr unless params[:export]
 
@@ -995,7 +995,7 @@ SQL
       end
     end
 
-    skip_before_filter :check_xhr, only: [:run]
+    skip_before_action :check_xhr, only: [:run]
     # Return value:
     # success - true/false. if false, inspect the errors value.
     # errors - array of strings.
