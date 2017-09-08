@@ -32,6 +32,7 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Most Common Likers [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/most-common-likers.sql)
 * Export a list of people who replied to a specific topic [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/list-users-who-replied-topic.sql)
 * Pinned Topics [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/pinned-topics.sql)
+* Get a list of topics in a category read by a specific user [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/topics-in-a-category-read-by-user.sql)
 
 <!---
 
