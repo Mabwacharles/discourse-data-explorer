@@ -1,5 +1,5 @@
 -- https://meta.discourse.org/t/43516/68?u=sidv
--- Posts Created User Counts
+-- Participation Histograms: Posts Created User Counts
 -- Number of users who have created at least N posts over the specified time period.
 
 -- [params]
