@@ -1,6 +1,5 @@
 -- https://meta.discourse.org/t/43516/67?u=sidv
 -- User participation
--- Shows the following columns over a specified time range (in days)
 
 -- [params]
 -- int :from_days_ago = 0
