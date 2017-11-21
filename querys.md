@@ -33,9 +33,12 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Export a list of people who replied to a specific topic [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/list-users-who-replied-topic.sql)
 * Pinned Topics [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/pinned-topics.sql)
 * Get a list of topics in a category read by a specific user [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/topics-in-a-category-read-by-user.sql)
+* User participation [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/user-participation.sql)
+* Participation Histograms (Output from these used to make graphs shown in [this post](https://meta.discourse.org/t/67134/14?u=sidv)): 
+  * Posts Read User Counts [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/posts-read-user-counts.sql)
+  * Posts Created User Counts [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/posts-created-user-counts.sql)
 
 <!---
-
 * [SQL]()
 * [SQL]()
 * [SQL]()
