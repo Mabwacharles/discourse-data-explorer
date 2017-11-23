@@ -37,8 +37,13 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Participation Histograms (Output from these used to make graphs shown in [this post](https://meta.discourse.org/t/67134/14?u=sidv)): 
   * Posts Read User Counts [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/posts-read-user-counts.sql)
   * Posts Created User Counts [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/posts-created-user-counts.sql)
+* Top 50 Posters [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-50-posters.sql)
+* Top 50 Likers [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-50-likers.sql)
+
 
 <!---
+* [SQL]()
+* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
