@@ -39,10 +39,10 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
   * Posts Created User Counts [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/posts-created-user-counts.sql)
 * Top 50 Posters [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-50-posters.sql)
 * Top 50 Likers [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-50-likers.sql)
+* List of Score's Threads by interval [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/score-threads.sql)
 
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
