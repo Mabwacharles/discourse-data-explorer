@@ -42,9 +42,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * List of Score's Threads by interval [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/score-threads.sql)
 * Tracking Referrals [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/tracking-referrals.sql)
 * List for invisible topics [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/unlisted-topics.sql)
+* Tracking User Edits [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/tracking-user-edits.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
