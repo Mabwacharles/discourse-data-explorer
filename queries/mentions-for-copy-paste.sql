@@ -3,8 +3,8 @@
 -- SidV added params
 
 -- [params]
--- null :interval = '1 week'
--- int :limit = 10
+-- null string :interval = 1 week
+-- int :limit
 select concat ('@', username)
 from users
 where created_at >= CURRENT_DATE - INTERVAL :interval
