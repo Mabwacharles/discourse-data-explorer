@@ -43,9 +43,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Tracking Referrals [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/tracking-referrals.sql)
 * List for invisible topics [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/unlisted-topics.sql)
 * Tracking User Edits [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/tracking-user-edits.sql)
+* List of new users for copy-paste [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/mentions-for-copy-paste.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
