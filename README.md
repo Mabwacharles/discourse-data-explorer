@@ -1,3 +1,7 @@
+# [Query's List](https://github.com/SidVal/discourse-data-explorer/blob/queries/querys.md)
+
+***
+
 ### discourse-data-explorer
 
 This plugin allows admins to run SQL queries against the live Discourse database,
