@@ -7,10 +7,10 @@
 -- [params]
 -- null string :interval = 1 week
 -- int :limit
-select DISTINCT t.id, t.title, t.pinned_at, t.pinned_until, t.created_at, tu.cleared_pinned_at
-from topics t, topic_users tu
-where t.id = tu.topic_id
+SELECT DISTINCT t.id, t.title, t.pinned_at, t.pinned_until, t.created_at, tu.cleared_pinned_at
+FROM topics t, topic_users tu
+WHERE t.id = tu.topic_id
 AND t.created_at >= CURRENT_DATE - INTERVAL :interval
-AND t.pinned_at <= localtimestamp
-order by tu.cleared_pinned_at asc 
-limit :limit
+AND t.pinned_at IS NOT NULL
+ORDER BY tu.cleared_pinned_at ASC 
+LIMIT :limit
