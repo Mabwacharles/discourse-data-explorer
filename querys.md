@@ -44,9 +44,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * List for invisible topics [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/unlisted-topics.sql)
 * Tracking User Edits [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/tracking-user-edits.sql)
 * List of new users for copy-paste [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/mentions-for-copy-paste.sql)
+* List of cleared pinned topics [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/cleared-pinned-topics.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
