@@ -5,7 +5,7 @@
 -- 
 
 -- [params]
--- null string :interval = 1 week
+-- null string :interval = 3 year
 -- int :limit
 SELECT DISTINCT t.id, t.title, t.pinned_at, t.pinned_until, t.created_at, tu.cleared_pinned_at
 FROM topics t, topic_users tu
