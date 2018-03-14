@@ -47,8 +47,17 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * List of new users for copy-paste [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/mentions-for-copy-paste.sql)
 * List of cleared pinned topics [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/cleared-pinned-topics.sql)
 * List of users who have “liked” the most flagged posts, where the flags have been “agreed” by a moderator [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/identify-likers-flagged-posts.sql)
+* Lists all new topics created with a given month, ordered by category and creation_date. The query accepts a "months_ago" parameter. It defaults to 0 to give you the stats for the current month. [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/new-topics-by-category-date.sql)
+* List of the top 50 active topics per month. It’s based on the number of replies created for a topic in a given month. The query accepts a ‘months_ago’ parameter, defaults to 0 to give results for the current month. [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-50-active-topics.sql)
+* Count of topics solved by regular members (defaults to last month) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/count-topics-solved.sql)
+* Count of topics solved by staff members (defaults to last month) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/count-topics-solved-staff.sql)
+* Lists topics solved by regular users over a given monthly period, ordered by solution_date. [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/lists-topics-solved-date.sql)
+* Time to respond by staff (monthly): Average time to first staff response for topics created by regular users in a given time period for a hard-coded array of categories. The categories array can be changed by altering this line: `AND t.category_id = ANY ('{46,25,43,40,44,35,22,7,20,17,6,12}'::int[])`. It’s possible to alter the query so that the category array can be supplied as a string parameter, written in the form `{1, 2, 3}`. [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/time-respond-staff.sql)
 
 <!---
+* [SQL]()
+* [SQL]()
+* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
