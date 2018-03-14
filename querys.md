@@ -46,8 +46,15 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Tracking User Edits [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/tracking-user-edits.sql)
 * List of new users for copy-paste [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/mentions-for-copy-paste.sql)
 * List of cleared pinned topics [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/cleared-pinned-topics.sql)
+* List of users who have “liked” the most flagged posts, where the flags have been “agreed” by a moderator [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/identify-likers-flagged-posts.sql)
 
 <!---
+* [SQL]()
+* [SQL]()
+* [SQL]()
+* [SQL]()
+* [SQL]()
+* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
