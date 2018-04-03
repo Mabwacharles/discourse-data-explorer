@@ -53,7 +53,7 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Count of topics solved by staff members (defaults to last month) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/count-topics-solved-staff.sql)
 * Lists topics solved by regular users over a given monthly period, ordered by solution_date. [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/lists-topics-solved-date.sql)
 * Time to respond by staff (monthly): Average time to first staff response for topics created by regular users in a given time period for a hard-coded array of categories. The categories array can be changed by altering this line: `AND t.category_id = ANY ('{46,25,43,40,44,35,22,7,20,17,6,12}'::int[])`. It’s possible to alter the query so that the category array can be supplied as a string parameter, written in the form `{1, 2, 3}`. [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/time-respond-staff.sql)
-* Who is following the tags [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/who-following-tags.sql)
+* Who is following the tags - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/who-following-tags.sql) - Notification Levels: `muted: 0, regular: 1, tracking: 2, watching: 3, watching_first_post: 4` ([source](https://github.com/discourse/discourse/blob/master/lib/notification_levels.rb#L3-L7)) 
 
 
 <!---
