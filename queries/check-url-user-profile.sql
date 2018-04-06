@@ -15,8 +15,9 @@ LIMIT :limit
 
 
 
--- v2: https://meta.discourse.org/t/84718/5?u=sidv
--- The order by seems to work ok for me - may need to add a disclaimer saying they need to put whatever they are looking for in between the %% where you have the term in order to return it (some people may not know SQL).
+-- v2: https://meta.discourse.org/t/84718/5
+-- The order by seems to work ok for me - may need to add a disclaimer saying they need to put whatever they are looking 
+-- for in between the %% where you have the term in order to return it (some people may not know SQL).
 
 -- [params]
 -- int :limit = 150
