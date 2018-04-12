@@ -56,9 +56,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Who is following the tags - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/who-following-tags.sql) - Notification Levels: `muted: 0, regular: 1, tracking: 2, watching: 3, watching_first_post: 4` ([source](https://github.com/discourse/discourse/blob/master/lib/notification_levels.rb#L3-L7)) 
 * Checking user profiles URL field [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/check-url-user-profile.sql)
 * Checking default avatar's user  [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/check-avatar-user-profile.sql)
+* Last 7 days of topics (created) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/list-topics-week.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
