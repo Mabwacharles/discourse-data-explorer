@@ -2,7 +2,7 @@
 -- 
 
 --[params]
---string :interval = 1 month
+--string :interval = 1 week
 --int :limit
 SELECT id, title, created_at as posted
 FROM topics
