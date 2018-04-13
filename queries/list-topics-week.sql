@@ -12,7 +12,7 @@ GROUP BY id
 ORDER BY created_at DESC
 LIMIT :limit
 
--- v2
+-- v2 (list with link to topic)
 -- https://meta.discourse.org/t/85103/7?u=sidv
 
 --[params]
