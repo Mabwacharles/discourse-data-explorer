@@ -12,6 +12,30 @@ GROUP BY id
 ORDER BY created_at DESC
 LIMIT :limit
 
+
+
+-- new query -- 
+-- v1.1 (with html$topic by @Mittineague)
+-- https://meta.discourse.org/t/85103/8?u=sidv
+
+--[params]
+--string :interval = 1 week
+--int :limit
+SELECT id, 
+CONCAT('<a href = "/t/', id, '">', title, '</a>') 
+   AS html$topic,
+   created_at as posted
+FROM topics
+WHERE age(created_at) < interval :interval
+AND archetype != 'private_message'
+GROUP BY id
+ORDER BY created_at DESC
+LIMIT :limit
+
+
+
+
+-- new query -- 
 -- v2 (list with link to topic)
 -- https://meta.discourse.org/t/85103/7?u=sidv
 
