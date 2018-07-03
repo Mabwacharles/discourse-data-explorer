@@ -57,9 +57,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Checking user profiles URL field [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/check-url-user-profile.sql)
 * Checking default avatar's user  [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/check-avatar-user-profile.sql)
 * Last 7 days of topics (created) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/list-topics-week.sql)
+* How to check the uniqueness of users in “hot link” badge [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/hot-link.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
