@@ -1,4 +1,4 @@
--- https://meta.discourse.org/t/91471?u=sidv
+-- https://meta.discourse.org/t/91471/2?u=sidv
 -- How to check the uniqueness of users in “hot link” badge?
 -- For this query you need to know your user's id
 
