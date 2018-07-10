@@ -58,9 +58,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Checking default avatar's user  [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/check-avatar-user-profile.sql)
 * Last 7 days of topics (created) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/list-topics-week.sql)
 * How to check the uniqueness of users in “hot link” badge [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/hot-link.sql)
+* How do I see Facebook signups? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/facebook-signups.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
