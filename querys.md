@@ -60,10 +60,10 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * How to check the uniqueness of users in “hot link” badge [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/hot-link.sql)
 * How do I see Facebook signups? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/facebook-signups.sql)
 * Search a "Term" into PM (personal messages) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/search-term-pm.sql)
+* List of users that excludes the members of a group [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/excludes-members-group.sql)
+* Categories solved by members or staff [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/categories-solved-by.sql)
 
 <!---
-* [SQL]()
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
