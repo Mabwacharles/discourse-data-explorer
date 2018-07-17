@@ -62,9 +62,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Search a "Term" into PM (personal messages) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/search-term-pm.sql)
 * List of users that excludes the members of a group [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/excludes-members-group.sql)
 * Categories solved by members or staff [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/categories-solved-by.sql)
+* Give me all the users from group VIP where badge Certified does not exist [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-from-group-without-badge.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
