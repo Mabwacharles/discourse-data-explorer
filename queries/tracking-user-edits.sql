@@ -18,10 +18,12 @@ ORDER BY revisions DESC
 LIMIT :limit
 
 -- Second Query
+-- [params]
+-- int :limit
 SELECT
 pr.post_id,
 COUNT(DISTINCT pr.user_id) AS reviser_count
 FROM post_revisions pr
 GROUP BY pr.post_id
 ORDER BY reviser_count DESC
-LIMIT 50
+LIMIT :limit
