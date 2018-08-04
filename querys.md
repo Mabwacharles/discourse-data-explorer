@@ -63,9 +63,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * List of users that excludes the members of a group [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/excludes-members-group.sql)
 * Categories solved by members or staff [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/categories-solved-by.sql)
 * Give me all the users from group VIP where badge Certified does not exist [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-from-group-without-badge.sql)
+* List of emails from users who open the topics (by id) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/emails-users-by-topic)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
