@@ -1,6 +1,8 @@
 -- https://meta.discourse.org/t/43516/91?u=sidv
 -- Time to respond by staff (monthly)
--- Average time to first staff response for topics created by regular users in a given time period for a hard-coded array of categories. The categories array can be changed (see the source for more info)
+-- Average time to first staff response for topics created by regular users in a 
+-- given time period for a hard-coded array of categories. The categories array can be changed 
+-- (see the source for more info)
 
 -- [params]
 -- int :months_ago = 1
