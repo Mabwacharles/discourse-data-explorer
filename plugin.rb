@@ -99,7 +99,7 @@ after_initialize do
 WITH query AS (
 #{query.sql}
 ) SELECT * FROM query
-LIMIT #{opts[:limit] || 250}
+LIMIT #{opts[:limit] || 1000}
 SQL
 
           time_start = Time.now
@@ -566,12 +566,13 @@ SQL
   end
 
   # Reimplement a couple ActiveRecord methods, but use PluginStore for storage instead
+  require_dependency File.expand_path('../lib/queries.rb', __FILE__)
   class DataExplorer::Query
-    attr_accessor :id, :name, :description, :sql
+    attr_accessor :id, :name, :description, :sql, :created_by, :created_at, :last_run_at
 
     def initialize
       @name = 'Unnamed Query'
-      @description = 'Enter a description here'
+      @description = ''
       @sql = 'SELECT 1'
     end
 
@@ -609,7 +610,7 @@ SQL
 
     def self.from_hash(h)
       query = DataExplorer::Query.new
-      [:name, :description, :sql].each do |sym|
+      [:name, :description, :sql, :created_by, :created_at, :last_run_at].each do |sym|
         query.send("#{sym}=", h[sym].strip) if h[sym]
       end
       query.id = h[:id].to_i if h[:id]
@@ -622,20 +623,41 @@ SQL
         name: @name,
         description: @description,
         sql: @sql,
+        created_by: @created_by,
+        created_at: @created_at,
+        last_run_at: @last_run_at
       }
     end
 
     def self.find(id, opts = {})
-      unless hash = DataExplorer.pstore_get("q:#{id}")
-        return DataExplorer::Query.new if opts[:ignore_deleted]
-        raise Discourse::NotFound
+      if DataExplorer.pstore_get("q:#{id}").nil? && id < 0
+        hash = Queries.default[id.to_s]
+        hash[:id] = id
+        from_hash hash
+      else
+        unless hash = DataExplorer.pstore_get("q:#{id}")
+          return DataExplorer::Query.new if opts[:ignore_deleted]
+          raise Discourse::NotFound
+        end
+        from_hash hash
       end
-      from_hash hash
     end
 
     def save
       check_params!
       @id = self.class.alloc_id unless @id && @id > 0
+      DataExplorer.pstore_set "q:#{id}", to_hash
+    end
+
+    def save_default_query
+      check_params!
+      # Read from queries.rb again to pick up any changes and save them
+      query = Queries.default[id.to_s]
+      @id = query["id"]
+      @sql = query["sql"]
+      @name = query["name"]
+      @description = query["description"]
+
       DataExplorer.pstore_set "q:#{id}", to_hash
     end
 
@@ -904,6 +926,7 @@ SQL
   end
 
   require_dependency 'application_controller'
+  require_dependency File.expand_path('../lib/queries.rb', __FILE__)
   class DataExplorer::QueryController < ::ApplicationController
     requires_plugin DataExplorer.plugin_name
 
@@ -916,6 +939,18 @@ SQL
     def index
       # guardian.ensure_can_use_data_explorer!
       queries = DataExplorer::Query.all
+      Queries.default.each do |params|
+        query = DataExplorer::Query.new
+        query.id = params.second["id"]
+        query.sql = params.second["sql"]
+        query.name = params.second["name"]
+        query.description = params.second["description"]
+        query.created_by = Discourse::SYSTEM_USER_ID.to_s
+
+        # don't render this query if query with the same id already exists in pstore
+        queries.push(query) unless DataExplorer.pstore_get("q:#{query.id}").present?
+      end
+
       render_serialized queries, DataExplorer::QuerySerializer, root: 'queries'
     end
 
@@ -938,6 +973,9 @@ SQL
       # guardian.ensure_can_create_explorer_query!
 
       query = DataExplorer::Query.from_hash params.require(:query)
+      query.created_at = Time.now
+      query.created_by = current_user.id.to_s
+      query.last_run_at = Time.now
       query.id = nil # json import will assign an id, which is wrong
       query.save
 
@@ -994,7 +1032,17 @@ SQL
     # rows - array of array of strings. Results of the query. In the same order as 'columns'.
     def run
       check_xhr unless params[:download]
+
       query = DataExplorer::Query.find(params[:id].to_i)
+      query.last_run_at = Time.now
+
+      if params[:id].to_i < 0
+        query.created_by = Discourse::SYSTEM_USER_ID.to_s
+        query.save_default_query
+      else
+        query.save
+      end
+
       if params[:download]
         response.sending_file = true
       end
@@ -1041,6 +1089,7 @@ SQL
               success: true,
               errors: [],
               duration: (result[:duration_secs].to_f * 1000).round(1),
+              result_count: pg_result.values.length || 0,
               params: query_params,
               columns: cols,
             }
@@ -1073,10 +1122,14 @@ SQL
   end
 
   class DataExplorer::QuerySerializer < ActiveModel::Serializer
-    attributes :id, :sql, :name, :description, :param_info
+    attributes :id, :sql, :name, :description, :param_info, :created_by, :created_at, :username, :last_run_at
 
     def param_info
       object.params.map(&:to_hash) rescue nil
+    end
+
+    def username
+      User.find(created_by).username rescue nil
     end
   end
 
