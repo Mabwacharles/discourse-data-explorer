@@ -3,7 +3,7 @@
 }
 
 .query-editor {
-  border: 1px solid dark-light-diff($primary, $secondary, 80%, -20%);
+  border: 1px solid $primary-very-low;
   margin-bottom: 15px;
   .editor-panel {
     width: 65%;
@@ -25,7 +25,6 @@
     }
   }
 
-
   .editor-panel {
     float: left;
     .ace-wrapper {
@@ -44,22 +43,22 @@
   .right-panel {
     float: right;
     .schema {
-      border-left: 1px solid dark-light-diff($primary, $secondary, 80%, -20%);
+      border-left: 1px solid $primary-low;
       height: 400px;
       overflow-y: scroll;
       overflow-x: hidden;
-      color: dark-light-diff($primary, $secondary, 20%, -20%);
-      font-size: 11px;
+      color: $primary-high;
+      font-size: $font-down-2;
 
       input {
         padding: 4px;
         margin: 3px;
         // 100% - padding + margin * 2 - border - button - buttonborder
-        width: calc(100% - 14px - 1px - 22px - 2px);
+        width: calc(100% - 14px - 1px - 40px - 2px);
       }
       .schema-table-name {
         font-weight: bold;
-        border-bottom: 1px solid dark-light-diff($primary, $secondary, 80%, -20%);
+        border-bottom: 1px solid $primary-low;
         padding-left: 5px;
         .fa {
           width: 6px;
@@ -77,7 +76,7 @@
         padding-bottom: 2px;
       }
       dl > div {
-        clear:both;
+        clear: both;
       }
       dt {
         display: inline-block;
@@ -96,25 +95,31 @@
         color: $tertiary;
         margin: 0;
         padding-left: 7px;
-        border-left: 1px dotted dark-light-diff($primary, $secondary, 80%, -20%);
+        border-left: 1px dotted $primary-low-mid;
 
         .schema-typenotes {
-          color: dark-light-diff($primary, $secondary, 50%, -20%);
+          color: $primary-medium;
           font-style: italic;
         }
         .popup-info {
-          color: dark-light-diff($primary, $secondary, 50%, -20%);
+          color: $primary-medium;
 
-          .popup { display: none; }
-          &:hover .popup { display: block; }
-          &:focus .popup { display: block; }
+          .popup {
+            display: none;
+          }
+          &:hover .popup {
+            display: block;
+          }
+          &:focus .popup {
+            display: block;
+          }
 
           .popup {
             position: absolute;
             padding: 5px;
             padding-right: calc(5px + 2em);
             border: 1px solid;
-            background: white;
+            background: $secondary;
             left: -120px;
             width: 180px;
             top: 6px;
@@ -139,11 +144,33 @@
 }
 
 .query-edit {
-  .name h2 {
-    display: inline-block;
+  .name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    h1 {
+      display: inline-block;
+      margin: 0 0.5em 0 0;
+      color: $primary;
+      a {
+        color: currentColor;
+      }
+    }
   }
-  .name input, .desc textarea {
-    width: calc(100% - 10px);
+  button.previous {
+    margin-right: 0.5em;
+    .d-icon {
+      margin-left: -0.15em; // fixing fontawesome horizontal alignment
+    }
+  }
+  .name-text-field {
+    width: 100%;
+  }
+  .name input,
+  .desc textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
   }
   &:not(.editing) .desc {
     margin: 10px 0;
@@ -158,7 +185,9 @@
   }
 }
 
-.clear { clear: both; }
+.clear {
+  clear: both;
+}
 
 .schema-title {
   display: block;
@@ -166,15 +195,15 @@
 }
 
 .query-params {
-  border: 1px solid dark-light-diff($primary, $secondary, 60%, -20%);
+  border: 1px solid $header_primary-medium;
   .param > input {
     margin: 9px;
   }
   .invalid > input {
-    background-color: mix($danger, $secondary, 20%);
+    background-color: $danger-low;
   }
   .invalid .ac-wrap {
-    background-color: mix($danger, $secondary, 20%);
+    background-color: $danger-low;
   }
   .param {
     width: 300px;
@@ -196,18 +225,89 @@
   }
 }
 
-.query-list, .query-create, .query-edit, .query-results, .query-params, .https-warning {
+.query-list,
+.query-create,
+.query-edit,
+.query-results,
+.query-params,
+.https-warning {
   margin: 10px 0;
 }
 
 .query-list {
   display: flex;
-  .combo-box, button {
-    margin-right: .5em;
+  .btn-left {
+    margin-right: 0.5em;
+  }
+  .btn-right {
+    margin-left: auto;
+    margin-right: 0.5em;
   }
   li.none {
     display: none;
   }
+}
+
+.recent-queries {
+  thead {
+    .created-by {
+      width: 20%;
+    }
+    .created-at {
+      width: 15%;
+    }
+    .heading {
+      position: relative;
+      color: $primary-medium;
+      padding: 50px 0px 0px 0px;
+      th.sortable {
+        font-weight: normal;
+      }
+      .heading-toggle {
+        bottom: 0;
+        position: absolute;
+        display: inline-block;
+      }
+    }
+  }
+  .query-row {
+    a {
+      width: 100%;
+    }
+    .query-name {
+      color: $primary;
+    }
+    .query-desc {
+      display: block;
+      color: $primary-high;
+    }
+    .query-created-by {
+      color: $primary-high;
+    }
+    .query-created-at {
+      color: $primary-medium;
+    }
+  }
+  .query-row:hover {
+    background-color: inherit;
+  }
+  tr a {
+    color: inherit;
+    cursor: pointer;
+    display: inline-block;
+  }
+}
+
+.result-info {
+  float: left;
+}
+.result-about {
+  color: $primary-high;
+  float: right;
+}
+.result-explain {
+  padding-top: 1em;
+  margin-bottom: 0px;
 }
 
 .explorer-pad-bottom {

@@ -1,47 +1,52 @@
 {{#explorer-container hideSchema=hideSchema everEditing=everEditing}}
 
   {{#if disallow}}
-    <h2>{{i18n "explorer.admins_only"}}</h2>
+    <h1>{{i18n "explorer.admins_only"}}</h1>
   {{else}}
-    <div class="query-list">
-      {{combo-box valueAttribute="id" value=selectedQueryId nameProperty="listName" none="explorer.menu_none" content=content castInteger="true" nameChanges="true"}}
-      {{d-button action="showCreate" icon="plus" class="no-text"}}
-      {{d-button action="importQuery" label="explorer.import.label" icon="upload"}}
-    </div>
-
-    {{#if showCreate}}
-      <div class="query-create">
-        {{text-field value=newQueryName placeholderKey="explorer.create_placeholder"}}
-        {{d-button action="create" disabled=createDisabled label="explorer.create" icon="plus" class="btn-primary"}}
+    {{#unless selectedQueryId}}
+      <div class="query-list">
+        {{combo-box valueAttribute="id" class="btn-left" value=selectedQueryId nameProperty="listName" none="explorer.menu_none" content=content castInteger="true" nameChanges="true"}}
+        {{d-button action="showCreate" icon="plus" class="no-text btn-right"}}
+        {{d-button action="importQuery" label="explorer.import.label" icon="upload btn-right"}}
       </div>
-    {{/if}}
 
-    {{#if othersDirty}}
-      <div class="warning">
-        {{fa-icon "warning"}}
-        {{i18n "explorer.others_dirty"}}
-      </div>
-    {{/if}}
+      {{#if showCreate}}
+        <div class="query-create">
+          {{text-field value=newQueryName placeholderKey="explorer.create_placeholder"}}
+          {{d-button action="create" disabled=createDisabled label="explorer.create" icon="plus" class="btn-primary"}}
+        </div>
+      {{/if}}
 
-    <hr>
+      {{#if othersDirty}}
+        <div class="warning">
+          {{fa-icon "warning"}}
+          {{i18n "explorer.others_dirty"}}
+        </div>
+      {{/if}}
+    {{/unless}}
 
     {{#if content.length}}
-      {{#if selectedItem.fake}}
-        <p>{{i18n "explorer.no_query_selected"}} <a {{action "showCreate"}}>{{i18n "explorer.no_query_selected_hook"}}</a></p>
-      {{else}}
+      {{#unless selectedItem.fake}}
         <div class="query-edit {{if editName "editing"}}">
           {{#if selectedItem}}
             {{#if editing}}
               <div class="name">
-                {{text-field value=selectedItem.name}}
+                  {{d-button action="goHome" icon="chevron-left" class="previous"}}
+                <div class="name-text-field">
+                  {{text-field value=selectedItem.name}}
+                </div>
               </div>
               <div class="desc">
-                {{textarea value=selectedItem.description}}
+                {{textarea value=selectedItem.description placeholder=(i18n "explorer.description_placeholder")}}
               </div>
             {{else}}
               <div class="name">
-                <h2>{{selectedItem.name}}</h2>
-                {{d-button action="editName" icon="pencil" class="no-text btn-small"}}
+                {{d-button action="goHome" icon="chevron-left" class="previous"}}
+                <h1>{{selectedItem.name}}
+                  {{#unless editDisabled}}
+                    <a {{action "editName" class="edit-query-name"}}>{{d-icon "pencil"}}</a>
+                  {{/unless}}
+                </h1>
               </div>
               <div class="desc">
                 {{selectedItem.description}}
@@ -74,7 +79,9 @@
               {{#if everEditing}}
                 {{d-button action="save" label="explorer.save" disabled=saveDisabled class="btn-primary"}}
               {{else}}
-                {{d-button action="editName" label="explorer.edit" icon="pencil" class="btn-primary"}}
+                {{#unless editDisabled}}
+                  {{d-button action="editName" label="explorer.edit" icon="pencil" class="btn-primary"}}
+                {{/unless}}
               {{/if}}
               {{d-button action="download" label="explorer.export" disabled=runDisabled icon="download"}}
             </div>
@@ -85,7 +92,9 @@
                 {{#if everEditing}}
                   {{d-button action="discard" class="btn-danger" icon="undo" label="explorer.undo" disabled=saveDisabled}}
                 {{/if}}
-                {{d-button action="destroy" class="btn-danger" icon="trash" label="explorer.delete"}}
+                {{#unless editDisabled}}
+                  {{d-button action="destroy" class="btn-danger" icon="trash" label="explorer.delete"}}
+                {{/unless}}
               {{/if}}
             </div>
             <div class="clear"></div>
@@ -117,7 +126,7 @@
         </form>
 
         <hr>
-      {{/if}}
+      {{/unless}}
       {{conditional-loading-spinner condition=loading}}
       {{#unless selectedItem.fake}}
         {{#if results}}
@@ -133,10 +142,63 @@
         {{/if}}
       {{/unless}}
 
+    {{#if showRecentQueries}}
+      <div class="container">
+        <table class="recent-queries">
+          <thead class="heading-container">
+            <th class="col heading name">
+              <div class="heading-toggle" {{action "sortByProperty" "name"}}>
+                {{directory-toggle field="name" labelKey="explorer.query_name" order=order asc=asc}}
+              </div>
+            </th>
+            <th class="col heading created-by">
+              <div class="heading-toggle" {{action "sortByProperty" "username"}}>
+                {{directory-toggle field="username" labelKey="explorer.query_user" order=order asc=asc}}
+              </div>
+            </th>
+            <th class="col heading created-at">
+              <div class="heading-toggle" {{action "sortByProperty" "last_run_at"}}>
+                {{directory-toggle field="last_run_at" labelKey="explorer.query_time" order=order asc=asc}}
+              </div>
+            </th>
+          </thead>
+          <tr></tr>
+          <tbody>
+            {{#each sortedQueries as |query|}}
+              <tr class="query-row">
+                <td>
+                  <a {{action "scrollTop"}} href="/admin/plugins/explorer/?id={{query.id}}">
+                    <b class="query-name">{{query.name}}</b>
+                    <medium class="query-desc">{{query.description}}</medium>
+                  </a>
+                </td>
+                <td class="query-created-by">
+                  {{#if query.username}}
+                    <a href="/users/{{query.username}}/activity">
+                      <medium>{{query.username}}</medium>
+                    </a>
+                  {{/if}}
+                </td>
+                <td class="query-created-at">
+                  {{#if query.last_run_at}}  
+                    <medium>
+                      {{bound-date query.last_run_at}}
+                    </medium>
+                  {{else}}
+                    <medium>
+                      {{bound-date query.created_at}}
+                    </medium>
+                  {{/if}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    {{/if}}
+
       <div class="explorer-pad-bottom"></div>
 
-    {{else}}
-      <p>{{i18n "explorer.no_queries"}} <a {{action "showCreate"}}>{{i18n "explorer.no_queries_hook"}}</a></p>
     {{/if}}
   {{/if}}
 {{/explorer-container}}
