@@ -1,10 +1,11 @@
 -- https://meta.discourse.org/t/74574/5?u=sidv
 -- Top 50 posters
--- Returns the top 50 posters for a given monthly period. Results are ordered by post_count. It accepts a ‘months_ago’ parameter, defaults to 1 to give results for the most recently completed calendar month.
+-- Returns the top 50 posters for a given monthly period. 
+-- Results are ordered by post_count. It accepts a ‘months_ago’ parameter, defaults to 1 to give results for the most 
+-- recently completed calendar month.
 
 -- [params]
 -- int :months_ago = 1
-
 WITH query_period AS (
 SELECT
 date_trunc('month', CURRENT_DATE) - INTERVAL ':months_ago months' as period_start,
