@@ -67,9 +67,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Latest uploads with URLs [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/uploads-urls.sql)
 * Top 10 referrers over the last month [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-10-referrers.sql)
 * Displaying user custom fields in data explorer query results [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/displaying-user-custom-fields.sql)
+* How to query a confirmation-type custom user field? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-custom-user-field.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
