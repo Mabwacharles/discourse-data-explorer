@@ -65,9 +65,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Give me all the users from group VIP where badge Certified does not exist [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-from-group-without-badge.sql)
 * List of emails from users who open the topics (by id) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/emails-users-by-topic)
 * Latest uploads with URLs [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/uploads-urls.sql)
+* Top 10 referrers over the last month [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-10-referrers.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
