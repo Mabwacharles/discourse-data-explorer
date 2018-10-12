@@ -66,9 +66,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * List of emails from users who open the topics (by id) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/emails-users-by-topic)
 * Latest uploads with URLs [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/uploads-urls.sql)
 * Top 10 referrers over the last month [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-10-referrers.sql)
+* Displaying user custom fields in data explorer query results [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/displaying-user-custom-fields.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
