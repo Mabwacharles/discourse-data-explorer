@@ -68,9 +68,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Top 10 referrers over the last month [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-10-referrers.sql)
 * Displaying user custom fields in data explorer query results [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/displaying-user-custom-fields.sql)
 * How to query a confirmation-type custom user field? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-custom-user-field.sql)
+* Established users with trust-level locked to 0, 1 or 2 [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/trust-level-locked.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
