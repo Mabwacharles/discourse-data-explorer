@@ -70,9 +70,10 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * How to query a confirmation-type custom user field? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-custom-user-field.sql)
 * Established users with trust-level locked to 0, 1 or 2 [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/trust-level-locked.sql)
 * Return a list of usernames and the number of topics each of those usernames has created that is now tagged [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/usernames-tagname.sql)
+* The number of posts by a user on topics where the user is not the OP [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/posts-where-user-not-op.sql)
+
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
