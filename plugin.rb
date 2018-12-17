@@ -7,6 +7,16 @@
 enabled_site_setting :data_explorer_enabled
 register_asset 'stylesheets/explorer.scss'
 
+if respond_to?(:register_svg_icon)
+  register_svg_icon "caret-down"
+  register_svg_icon "caret-right"
+  register_svg_icon "chevron-left"
+  register_svg_icon "exclamation-circle"
+  register_svg_icon "info"
+  register_svg_icon "pencil-alt"
+  register_svg_icon "upload"
+end
+
 # route: /admin/plugins/explorer
 add_admin_route 'explorer.title', 'explorer'
 
@@ -161,7 +171,7 @@ SQL
       needed_classes = {}
 
       pg_result.fields.each_with_index do |col, idx|
-        rgx = column_regexes.find { |rgx| rgx.match col }
+        rgx = column_regexes.find { |r| r.match col }
         if rgx
           cls = (rgx.match col)[1].to_sym
           needed_classes[cls] ||= []
