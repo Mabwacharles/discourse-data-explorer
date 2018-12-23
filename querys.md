@@ -71,7 +71,7 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Established users with trust-level locked to 0, 1 or 2 [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/trust-level-locked.sql)
 * Return a list of usernames and the number of topics each of those usernames has created that is now tagged [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/usernames-tagname.sql)
 * The number of posts by a user on topics where the user is not the OP [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/posts-where-user-not-op.sql)
-* SQL to display a list of users (top 10 maybe), ordered by the total number of Badges they have? [SQL v1](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-users-by-badges-v1.sql) [SQL v2](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-users-by-badges-v2.sql)
+* SQL to display a list of users (top 10 maybe), ordered by the total number of Badges they have? [SQL v1](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-users-by-badges-v1.sql) - [SQL v2](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-users-by-badges-v2.sql)
 
 <!---
 * [SQL]()
