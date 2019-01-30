@@ -21,6 +21,8 @@ end
 add_admin_route 'explorer.title', 'explorer'
 
 module ::DataExplorer
+  QUERY_RESULT_MAX_LIMIT = 1000
+
   def self.plugin_name
     'discourse-data-explorer'.freeze
   end
@@ -46,7 +48,7 @@ after_initialize do
       isolate_namespace DataExplorer
     end
 
-    class ValidationError < StandardError;
+    class ValidationError < StandardError
     end
 
     class SmallBadgeSerializer < ApplicationSerializer
@@ -59,8 +61,12 @@ after_initialize do
       def excerpt
         Post.excerpt(object.cooked, 70)
       end
-      def username; object.user && object.user.username; end
-      def avatar_template; object.user && object.user.avatar_template; end
+      def username
+        object.user && object.user.username
+      end
+      def avatar_template
+        object.user && object.user.avatar_template
+      end
     end
 
     # Run a data explorer query on the currently connected database.
@@ -109,7 +115,7 @@ after_initialize do
 WITH query AS (
 #{query.sql}
 ) SELECT * FROM query
-LIMIT #{opts[:limit] || 1000}
+LIMIT #{opts[:limit] || DataExplorer::QUERY_RESULT_MAX_LIMIT}
 SQL
 
           time_start = Time.now
@@ -1005,7 +1011,7 @@ SQL
         end
       end
 
-      [:name, :sql, :description].each do |sym|
+      [:name, :sql, :description, :created_by, :created_at, :last_run_at].each do |sym|
         query.send("#{sym}=", hash[sym]) if hash[sym]
       end
 
@@ -1064,8 +1070,12 @@ SQL
       opts = { current_user: current_user.username }
       opts[:explain] = true if params[:explain] == "true"
 
-      opts[:limit] = "ALL" if params[:format] == "csv"
-      opts[:limit] = params[:limit].to_i if params[:limit]
+      opts[:limit] =
+        if params[:limit] == "ALL" || params[:format] == "csv"
+          "ALL"
+        elsif params[:limit]
+          params[:limit].to_i
+        end
 
       result = DataExplorer.run_query(query, query_params, opts)
 
@@ -1102,11 +1112,15 @@ SQL
               result_count: pg_result.values.length || 0,
               params: query_params,
               columns: cols,
+              default_limit: DataExplorer::QUERY_RESULT_MAX_LIMIT
             }
             json[:explain] = result[:explain] if opts[:explain]
-            ext = DataExplorer.add_extra_data(pg_result)
-            json[:colrender] = ext[1]
-            json[:relations] = ext[0]
+
+            if !params[:download]
+              ext = DataExplorer.add_extra_data(pg_result)
+              json[:colrender] = ext[1]
+              json[:relations] = ext[0]
+            end
 
             json[:rows] = pg_result.values
 
