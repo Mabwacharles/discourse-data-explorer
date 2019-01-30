@@ -26,15 +26,15 @@ function transformedRelTable(table, modelClass) {
 const QueryResultComponent = Ember.Component.extend({
   layoutName: "explorer-query-result",
 
-  rows: Em.computed.alias("content.rows"),
-  columns: Em.computed.alias("content.columns"),
-  params: Em.computed.alias("content.params"),
-  explainText: Em.computed.alias("content.explain"),
-  hasExplain: Em.computed.notEmpty("content.explain"),
+  rows: Ember.computed.alias("content.rows"),
+  columns: Ember.computed.alias("content.columns"),
+  params: Ember.computed.alias("content.params"),
+  explainText: Ember.computed.alias("content.explain"),
+  hasExplain: Ember.computed.notEmpty("content.explain"),
 
   @computed("content.result_count")
   resultCount: function(count) {
-    if (count === 1000) {
+    if (count === this.get("content.default_limit")) {
       return I18n.t("explorer.max_result_count", { count });
     } else {
       return I18n.t("explorer.result_count", { count });
@@ -184,7 +184,7 @@ const QueryResultComponent = Ember.Component.extend({
 
       document.body.appendChild(form);
       form.submit();
-      Em.run.next("afterRender", function() {
+      Ember.run.next("afterRender", function() {
         document.body.removeChild(form);
       });
     });
