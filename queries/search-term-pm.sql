@@ -1,5 +1,6 @@
 -- https://meta.discourse.org/t/43516/115?u=sidv
--- Replace WELCOME-TITLE-from-discobot by the exact title of your welcome message, so that all welcome messages generated automatically are excluded.
+-- Replace WELCOME-TITLE-from-discobot by the exact title of your welcome message, 
+-- so that all welcome messages generated automatically are excluded.
 
 -- [params]
 -- int :limit = 10
