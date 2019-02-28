@@ -73,8 +73,18 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * The number of posts by a user on topics where the user is not the OP [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/posts-where-user-not-op.sql)
 * SQL to display a list of users (top 10 maybe), ordered by the total number of Badges they have? [SQL v1](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-users-by-badges-v1.sql) - [SQL v2](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-users-by-badges-v2.sql)
 * Number of active users per login method [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/active-users-per-login-method.sql)
+* How many members open the Welcome PM? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/count-members-open-welcome-pm.sql)
 
 <!---
+* [SQL]()
+* [SQL]()
+* [SQL]()
+* [SQL]()
+* [SQL]()
+* [SQL]()
+* [SQL]()
+* [SQL]()
+* [SQL]()
 * [SQL]()
 * [SQL]()
 -->
