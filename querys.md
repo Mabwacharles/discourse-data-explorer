@@ -110,6 +110,27 @@ AND p.user_id = :user_id
 LIMIT :limit
 ```
 
+### Desc or Asc order
+
+>But I’m interested in, is it possible to pass the asc or desc parameter to ORDER BY?
+
+I don’t think it’s possible to pass a keyword as a parameter, but a boolean `:desc` parameter could be used in a CASE expression.
+
+Example:
+
+```sql
+--[params]
+-- boolean :desc = false
+SELECT
+*
+FROM generate_series(1, 10) AS num
+ORDER BY
+  CASE WHEN :desc THEN num END DESC,
+  CASE WHEN NOT :desc THEN num END ASC
+```
+
+[Read more here](https://meta.discourse.org/t/what-cool-data-explorer-queries-have-you-come-up-with/43516/183?u=sidv)
+
 ## Errors
 :warning: For new errors please [open a issue here](https://github.com/SidVal/discourse-data-explorer/issues) and PUT the URL from [meta discussion from discourse.org](https://meta.discourse.org)
 
