@@ -74,9 +74,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * SQL to display a list of users (top 10 maybe), ordered by the total number of Badges they have? [SQL v1](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-users-by-badges-v1.sql) - [SQL v2](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/top-users-by-badges-v2.sql)
 * Number of active users per login method [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/active-users-per-login-method.sql)
 * How many members open the Welcome PM? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/count-members-open-welcome-pm.sql)
+  * How many members open the Welcome PM, but just for the last X months? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/members-open-welcome-pm-for-month.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
