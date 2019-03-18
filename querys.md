@@ -75,9 +75,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Number of active users per login method [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/active-users-per-login-method.sql)
 * How many members open the Welcome PM? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/count-members-open-welcome-pm.sql)
   * How many members open the Welcome PM, but just for the last X months? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/members-open-welcome-pm-for-month.sql)
+* Topics's list where I’ve been mentioned… but haven’t responded after being mentioned [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/topic-list-where-mention-user.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
