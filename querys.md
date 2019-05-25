@@ -76,10 +76,10 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * How many members open the Welcome PM? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/count-members-open-welcome-pm.sql)
   * How many members open the Welcome PM, but just for the last X months? [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/members-open-welcome-pm-for-month.sql)
 * Topics's list where I’ve been mentioned… but haven’t responded after being mentioned [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/topic-list-where-mention-user.sql)
+* Users (In Specific Group) Last Seen Since N Days Ago [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-in-group-last-seen.sql)
+* Users In Specific Group(s) BUT NOT In Other Group(s) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-group-not-in-other-groups.sql)
 
 <!---
-* [SQL]()
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
