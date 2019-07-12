@@ -79,9 +79,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Topics's list where I’ve been mentioned… but haven’t responded after being mentioned [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/topic-list-where-mention-user.sql)
 * Users (In Specific Group) Last Seen Since N Days Ago [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-in-group-last-seen.sql)
 * Users In Specific Group(s) BUT NOT In Other Group(s) [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-group-not-in-other-groups.sql)
+* Users who’ve become active: calculate what % of users, who joined within a certain timeframe, have posted X times, within a certain timeframe - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/percent-users-posted.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
