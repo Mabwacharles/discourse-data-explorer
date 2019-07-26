@@ -10,6 +10,7 @@
 -- date :date_to = 2038-01-19
 -- boolean :guess_domain = true
 -- string :domain = https://example.com
+-- int :limit = 50
 WITH ss AS (
   SELECT CASE
     WHEN :guess_domain = true THEN concat('https://', split_part(value, '@', 2))
@@ -57,3 +58,4 @@ WHERE
   AND
   ua.created_at BETWEEN :date_from AND :date_to
 ORDER BY created_at DESC
+LIMIT :limit
