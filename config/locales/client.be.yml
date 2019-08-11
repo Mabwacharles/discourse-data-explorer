@@ -5,16 +5,16 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-id:
+be:
   js:
     explorer:
-      schema:
-        filter: "Cari..."
       types:
         bool:
-          'yes': "Ya"
-          'no': "Tidak"
-      save: "Simpan perubahan"
-      edit: "Ubah"
-      delete: "Hapus"
-      search_placeholder: "Cari..."
+          'yes': "Так"
+          'no': "Не"
+      export: "экспарт"
+      save: "Захаваць"
+      edit: "Рэдагаваць"
+      delete: "Выдаліць"
+      query_description: "апісанне"
+      reset_params: "скінуць"
