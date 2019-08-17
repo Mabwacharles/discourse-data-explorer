@@ -81,9 +81,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Users In Specific Group(s) BUT NOT In Other Group(s) - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-group-not-in-other-groups.sql)
 * Users who’ve become active: calculate what % of users, who joined within a certain timeframe, have posted X times, within a certain timeframe - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/percent-users-posted.sql)
 * Count Post Created for period - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/post-created-for-period.sql)
+* Users with first post within period - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-first-post-period.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 * [SQL]()
