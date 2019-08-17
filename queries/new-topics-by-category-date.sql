@@ -1,5 +1,6 @@
 -- https://meta.discourse.org/t/43516/91?u=sidv
--- Lists all new topics created with a given month, ordered by category and creation_date. The query accepts a "months_ago" parameter. It defaults to 0 to give you the stats for the current month.
+-- Lists all new topics created with a given month, ordered by category and creation_date. 
+-- The query accepts a "months_ago" parameter. It defaults to 0 to give you the stats for the current month.
 
 -- [params]
 -- int :months_ago = 1
