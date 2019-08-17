@@ -1,5 +1,6 @@
 -- https://meta.discourse.org/t/43516/91?u=sidv
--- Returns topics solved by regular users over a given monthly period, ordered by solution_date. The query accepts a ‘months_ago’ parameter, defaults to 0 to give the results for the current month.
+-- Returns topics solved by regular users over a given monthly period, ordered by solution_date. 
+-- The query accepts a ‘months_ago’ parameter, defaults to 0 to give the results for the current month.
 
 -- [params]
 -- int :months_ago = 1
