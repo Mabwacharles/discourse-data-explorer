@@ -84,9 +84,9 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
 * Users with first post within period - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/users-first-post-period.sql)
 * Non-PM topics that have not received a staff reply (with limit and category_id exclution) - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/topics-not-received-staff-reply.sql)
    * Non-PM topics that have not received a staff reply (version 2) - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/topics-not-received-staff-reply-2.sql)
+* Query for most valuable users in the given/chosen period of time - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/valuable-users.sql)
 
 <!---
-* [SQL]()
 * [SQL]()
 * [SQL]()
 -->
