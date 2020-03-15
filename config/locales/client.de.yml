@@ -13,6 +13,7 @@ de:
         dirty: "Du musst die Anfrage speicher, bevor du sie startest."
     explorer:
       admins_only: "Dieser Daten-Explorer ist nur für Administratoren verfügbar."
+      allow_groups: "Gruppen erlauben, auf diese Abfrage zuzugreifen"
       title: "Daten-Explorer"
       create: "Neu erstellen"
       create_placeholder: "Name der Anfrage…"
@@ -49,6 +50,9 @@ de:
         one: "Zeige die ersten %{count} Ergebnisse."
         other: "Zeige die ersten %{count} Ergebnisse."
       query_name: "Anfrage"
+      query_groups: "Gruppen"
+      link: "Link für"
+      report_name: "Bericht"
       query_description: "Beschreibung"
       query_time: "Letzter Lauf"
       query_user: "Erstellt von"
@@ -58,3 +62,5 @@ de:
       reset_params: "Zurücksetzen"
       search_placeholder: "Suche…"
       no_search_results: "Sorry, wir konnten keine Ergebnisse finden, die deinem Text entsprechen."
+    group:
+      reports: "Berichte"

@@ -85,6 +85,11 @@ class Queries
             "id": -15,
             "name": "Total topics assigned per user",
             "description": "Count of assigned topis per user linking to assign list"
+        },
+        "poll-results": {
+            "id": -16,
+            "name": "Poll results report",
+            "description": "Details of a poll result, including details about each vote and voter, useful for analyzing results in external software."
         }
     }.with_indifferent_access
 
@@ -453,6 +458,32 @@ class Queries
         AND t.deleted_at IS NULL
       GROUP BY value::int, username_lower
       ORDER BY count(*) DESC, username_lower
+    SQL
+
+    queries["poll-results"]["sql"] = <<~SQL
+      -- [params]
+      -- string :poll_name
+      -- int :post_id
+
+      SELECT
+        poll_votes.updated_at AS vote_time,
+        poll_votes.poll_option_id AS vote_option,
+        users.id AS user_id,
+        users.username,
+        users.name,
+        users.trust_level,
+        poll_options.html AS vote_option_full
+      FROM
+        poll_votes
+      INNER JOIN
+        polls ON polls.id = poll_votes.poll_id
+      INNER JOIN
+        users ON users.id = poll_votes.user_id
+      INNER JOIN
+        poll_options ON poll_votes.poll_id = poll_options.poll_id AND poll_votes.poll_option_id = poll_options.id
+      WHERE
+        polls.name = :poll_name AND
+        polls.post_id = :post_id
     SQL
 
   # convert query ids from "mostcommonlikers" to "-1", "mostmessages" to "-2" etc.
