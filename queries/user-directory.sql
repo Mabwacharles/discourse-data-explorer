@@ -2,6 +2,12 @@
 
 -- [params]
 -- null int :period
+-- 1: all
+-- 2: yearly
+-- 3: monthly
+-- 4: weekly
+-- 5: daily
+-- 6: quarterly
 
 SELECT users.username AS "Username",
 directory_items.likes_received AS "Likes Received",
