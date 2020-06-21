@@ -86,10 +86,10 @@ More info: https://meta.discourse.org/t/data-explorer-plugin/32566
    * Non-PM topics that have not received a staff reply (version 2) - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/topics-not-received-staff-reply-2.sql)
 * Query for most valuable users in the given/chosen period of time - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/valuable-users.sql)
 * Some of stats from the admin report dashboard — but I’ve found them helpful to provide access to non-admin users - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/stats-admin-report.sql)
+* Who (logged in user) view specific topic - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/who-view-specific-topic.sql)
+* Last "x" topic view by user - [SQL](https://github.com/SidVal/discourse-data-explorer/blob/queries/queries/last-topics-by-user.sql)
 
 <!---
-* Some text - [SQL]()
-* Some text - [SQL]()
 * Some text - [SQL]()
 * Some text - [SQL]()
 * Some text - [SQL]()
