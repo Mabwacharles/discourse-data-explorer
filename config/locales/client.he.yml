@@ -13,6 +13,7 @@ he:
         dirty: "עליך לשמור את השאילתה בטרם ההרצה."
     explorer:
       admins_only: "דפדפן הנתונים זמין רק למנהלים."
+      allow_groups: "לאפשר לקבוצות לגשת לשאילתה הזאת"
       title: "דפדפן נתונים"
       create: "יצירת חדשה"
       create_placeholder: "שם השאילתה…"
@@ -53,6 +54,9 @@ he:
         many: "%{count} התוצאות המובילות מופיעות."
         other: "%{count} התוצאות המובילות מופיעות."
       query_name: "שאילתה"
+      query_groups: "קבוצות"
+      link: "קישור אל"
+      report_name: "דוח"
       query_description: "תיאור"
       query_time: "הרצה אחרונה"
       query_user: "נוצר על ידי"
@@ -62,3 +66,5 @@ he:
       reset_params: "איפוס"
       search_placeholder: "חיפוש..."
       no_search_results: "לא הצלחנו למצוא תוצאות שתואמות לטקסט שלך, עמך הסליחה."
+    group:
+      reports: "דוחות"

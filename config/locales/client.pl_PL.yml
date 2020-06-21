@@ -53,6 +53,9 @@ pl_PL:
         many: "Pokazywanie %{count} pierwszych wyników."
         other: "Pokazywanie %{count} pierwszych wyników."
       query_name: "Zapytanie"
+      query_groups: "Grupy"
+      link: "Link do"
+      report_name: "Zgłoszenie"
       query_description: "Opis"
       query_time: "Ostatnio wykonano"
       query_user: "Stworzone przez"
@@ -62,3 +65,5 @@ pl_PL:
       reset_params: "Przywróć"
       search_placeholder: "Wyszukiwanie..."
       no_search_results: "Nie znaleziono żadnych wyników."
+    group:
+      reports: "Zgłoszenia"

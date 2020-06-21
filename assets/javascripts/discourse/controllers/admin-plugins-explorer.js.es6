@@ -5,9 +5,9 @@ import { ajax } from "discourse/lib/ajax";
 import {
   default as computed,
   observes
-} from "ember-addons/ember-computed-decorators";
+} from "discourse-common/utils/decorators";
 
-const NoQuery = Query.create({ name: "No queries", fake: true });
+const NoQuery = Query.create({ name: "No queries", fake: true, group_ids: [] });
 
 export default Ember.Controller.extend({
   queryParams: { selectedQueryId: "id" },
@@ -19,8 +19,8 @@ export default Ember.Controller.extend({
   explain: false,
 
   saveDisabled: Ember.computed.not("selectedItem.dirty"),
-  runDisabled: Ember.computed.alias("selectedItem.dirty"),
-  results: Ember.computed.alias("selectedItem.results"),
+  runDisabled: Ember.computed.reads("selectedItem.dirty"),
+  results: Ember.computed.reads("selectedItem.results"),
 
   asc: null,
   order: null,
@@ -33,9 +33,9 @@ export default Ember.Controller.extend({
   @computed("search", "sortBy")
   filteredContent(search) {
     const regexp = new RegExp(search, "i");
-    return this.sortedQueries.filter(result => {
-      return regexp.test(result.name) || regexp.test(result.description);
-    });
+    return this.sortedQueries.filter(
+      result => regexp.test(result.name) || regexp.test(result.description)
+    );
   },
 
   @computed("newQueryName")
@@ -45,13 +45,34 @@ export default Ember.Controller.extend({
 
   @computed("selectedQueryId")
   selectedItem(selectedQueryId) {
-    const id = parseInt(selectedQueryId);
-    const item = this.model.find(q => q.id === id);
+    const id = parseInt(selectedQueryId, 10);
+    const item = this.model.findBy("id", id);
+
     !isNaN(id)
       ? this.set("showRecentQueries", false)
       : this.set("showRecentQueries", true);
-    if (id < 0) this.set("editDisabled", true);
+
+    if (id < 0) {
+      this.set("editDisabled", true);
+    }
+
     return item || NoQuery;
+  },
+
+  @computed("selectedItem", "editing")
+  selectedGroupNames() {
+    const groupIds = this.selectedItem.group_ids || [];
+    const groupNames = groupIds.map(id => {
+      return this.groupOptions.find(groupOption => groupOption.id === id).name;
+    });
+    return groupNames.join(", ");
+  },
+
+  @computed("groups")
+  groupOptions(groups) {
+    return groups.map(g => {
+      return { id: g.id.toString(), name: g.name };
+    });
   },
 
   @computed("selectedItem", "selectedItem.dirty")
@@ -81,6 +102,7 @@ export default Ember.Controller.extend({
     this.set("loading", true);
     if (this.get("selectedItem.description") === "")
       this.set("selectedItem.description", "");
+
     return this.selectedItem
       .save()
       .then(() => {
@@ -183,6 +205,8 @@ export default Ember.Controller.extend({
         .then(result => {
           const query = this.get("selectedItem");
           query.setProperties(result.getProperties(Query.updatePropertyNames));
+          if (!query.group_ids || !Array.isArray(query.group_ids))
+            query.set("group_ids", []);
           query.markNotDirty();
           this.set("editing", false);
         })

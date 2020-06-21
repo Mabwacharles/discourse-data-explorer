@@ -2,7 +2,7 @@ import {
   default as computed,
   on,
   observes
-} from "ember-addons/ember-computed-decorators";
+} from "discourse-common/utils/decorators";
 import RestModel from "discourse/models/rest";
 
 const Query = RestModel.extend({
@@ -23,7 +23,7 @@ const Query = RestModel.extend({
     this.resetParams();
   },
 
-  @observes("name", "description", "sql")
+  @observes("name", "description", "sql", "group_ids")
   markDirty() {
     this.set("dirty", true);
   },
@@ -85,6 +85,7 @@ Query.reopenClass({
     "sql",
     "created_by",
     "created_at",
+    "group_ids",
     "last_run_at"
   ]
 });

@@ -2,7 +2,7 @@ import {
   default as computed,
   on,
   observes
-} from "ember-addons/ember-computed-decorators";
+} from "discourse-common/utils/decorators";
 
 export default Ember.Component.extend({
   fileInput: null,
@@ -18,7 +18,7 @@ export default Ember.Component.extend({
     const fileInput = this.element.querySelector("#js-file-input");
     this.set("fileInput", fileInput);
 
-    $(fileInput).on("change", () => this.fileSelected(this.files));
+    $(fileInput).on("change", () => this.fileSelected(fileInput.files));
 
     $this.on("dragover", e => {
       if (e.preventDefault) e.preventDefault();

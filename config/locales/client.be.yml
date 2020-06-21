@@ -16,5 +16,8 @@ be:
       save: "Захаваць"
       edit: "Рэдагаваць"
       delete: "Выдаліць"
+      query_groups: "групы"
       query_description: "апісанне"
       reset_params: "скінуць"
+    group:
+      reports: "Справаздачы"
