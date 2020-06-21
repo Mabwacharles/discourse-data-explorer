@@ -90,6 +90,16 @@ class Queries
             "id": -16,
             "name": "Poll results report",
             "description": "Details of a poll result, including details about each vote and voter, useful for analyzing results in external software."
+        },
+        "top-tags-per-year": {
+            "id": -17,
+            "name": "Top tags per year",
+            "description": "List the top tags per year."
+        },
+        "number_of_replies_by_category": {
+            "id": -18,
+            "name": "Number of replies by category",
+            "description": "List the number of replies by category."
         }
     }.with_indifferent_access
 
@@ -484,6 +494,56 @@ class Queries
       WHERE
         polls.name = :poll_name AND
         polls.post_id = :post_id
+    SQL
+
+    queries["top-tags-per-year"]["sql"] = <<~SQL
+	-- [params]
+	-- integer :rank_max = 5
+
+	WITH data AS (SELECT 
+	    tag_id,
+	    EXTRACT(YEAR FROM created_at) AS year
+	FROM topic_tags)
+
+	SELECT year, rank, name, qt FROM (
+	    SELECT 
+		tag_id,
+		COUNT(tag_id) AS qt,
+		year,
+		rank() OVER (PARTITION BY year ORDER BY COUNT(tag_id) DESC) AS rank    
+	    FROM
+		data
+	    GROUP BY year, tag_id) as rnk
+	INNER JOIN tags ON tags.id = rnk.tag_id
+	WHERE rank <= :rank_max
+	ORDER BY year DESC, qt DESC
+    SQL
+
+    queries["number_of_replies_by_category"]["sql"] = <<~SQL
+	-- [params]
+	-- boolean :enable_null_category = false
+
+	WITH post AS (SELECT 
+	    id AS post_id,
+	    topic_id,
+	    EXTRACT(YEAR FROM created_at) AS year
+	FROM posts
+	WHERE post_type = 1
+	    AND deleted_at ISNULL
+	    AND post_number != 1)
+	    
+	SELECT 
+	    p.year,
+	    t.category_id AS id, 
+	    c.name category,
+	    COUNT(p.post_id) AS qt
+	FROM post p
+	INNER JOIN topics t ON t.id = p.topic_id
+	LEFT JOIN categories c ON c.id = t.category_id
+	WHERE t.deleted_at ISNULL
+	    AND (:enable_null_category = true OR t.category_id NOTNULL)
+	GROUP BY t.category_id, c.name, p.year
+	ORDER BY p.year DESC, qt DESC
     SQL
 
   # convert query ids from "mostcommonlikers" to "-1", "mostmessages" to "-2" etc.
