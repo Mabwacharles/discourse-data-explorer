@@ -1,9 +1,8 @@
-# encoding: utf-8
-#
-# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
 #
 # To work with us on translations, join this project:
-# https://www.transifex.com/projects/p/discourse-org/
+# https://translate.discourse.org/
 
 pt_BR:
   js:
@@ -24,11 +23,10 @@ pt_BR:
         title: "Esquema de Banco de Dados"
         filter: "Pesquisar…"
         sensitive: "O conteúdo desta coluna pode conter informações particularmente sensíveis ou privadas. Por favor, tenha cuidado ao usar o conteúdo desta coluna."
-        type_help: "<a href='http://www.postgresql.org/docs/9.3/static/datatype.html#DATATYPE-TABLE' target='_blank'>Tipos</a>"
       types:
         bool:
-          'yes': "Sim"
-          'no': "Não"
+          yes: "Sim"
+          no: "Não"
           null_: "Nulo"
       export: "Exportar"
       save: "Salvar Mudanças"
@@ -41,7 +39,6 @@ pt_BR:
       download_json: "JSON"
       download_csv: "CSV"
       others_dirty: "Uma consulta tem alterações não salvas que serão perdidas se você sair desta página."
-      run_time: "Consulta concluída em {{value}} ms."
       result_count:
         one: "%{count} resultado."
         other: "%{count} resultados."
@@ -54,7 +51,6 @@ pt_BR:
       query_description: "Descrição"
       query_time: "Última execução"
       query_user: "Criado por"
-      column: "Coluna {{number}}"
       explain_label: "Incluir plano de consulta?"
       save_params: "Definir Padrões"
       reset_params: "Redefinir"

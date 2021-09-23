@@ -1,9 +1,8 @@
-# encoding: utf-8
-#
-# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
 #
 # To work with us on translations, join this project:
-# https://www.transifex.com/projects/p/discourse-org/
+# https://translate.discourse.org/
 
 uk:
   js:
@@ -24,11 +23,10 @@ uk:
         title: "Схема бази даних"
         filter: "Пошук..."
         sensitive: "Вміст цього стовпця може містити особливо чутливу або приватну інформацію. Будьте обережні, використовуючи вміст цього стовпця."
-        type_help: "<a href='http://www.postgresql.org/docs/9.3/static/datatype.html#DATATYPE-TABLE' target='_blank'>Типи</a>"
       types:
         bool:
-          'yes': "Так"
-          'no': "Ні"
+          yes: "Так"
+          no: "Ні"
           null_: "Null"
       export: "Експорт"
       save: "Зберегти зміни"
@@ -41,7 +39,6 @@ uk:
       download_json: "JSON"
       download_csv: "CSV"
       others_dirty: "У запиті є не збережені зміни, які будуть втрачені, якщо ви перейдете далі."
-      run_time: "Запит виконано за {{value}} мс."
       result_count:
         one: "%{count} результат."
         few: "%{count} результатів."
@@ -59,7 +56,6 @@ uk:
       query_description: "Опис"
       query_time: "Останній запуск"
       query_user: "Створено"
-      column: "Стовпець {{number}}"
       explain_label: "Включити план запитів?"
       save_params: "Встановити значення за замовчуванням"
       reset_params: "Скинути"

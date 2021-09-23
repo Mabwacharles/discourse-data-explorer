@@ -1,9 +1,8 @@
-# encoding: utf-8
-#
-# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
 #
 # To work with us on translations, join this project:
-# https://www.transifex.com/projects/p/discourse-org/
+# https://translate.discourse.org/
 
 ca:
   js:
@@ -24,11 +23,10 @@ ca:
         title: "Esquema de base de dades"
         filter: "Cerca..."
         sensitive: "El contingut d'aquesta columna pot contenir informació particularment sensible o privada. Tingueu precaució quan utilitzeu el contingut d'aquesta columna."
-        type_help: "<a href='http://www.postgresql.org/docs/9.3/static/datatype.html#DATATYPE-TABLE' target='_blank'>Tipus</a>"
       types:
         bool:
-          'yes': "Sí"
-          'no': "No"
+          yes: "Sí"
+          no: "No"
           null_: "Nul"
       export: "Exporta"
       save: "Desa els canvis"
@@ -41,7 +39,7 @@ ca:
       download_json: "JSON"
       download_csv: "CSV"
       others_dirty: "Una consulta té canvis no desats que es perdran si continueu navegant."
-      run_time: "Consulta completada en {{value}} ms."
+      run_time: "La consulta s'ha completat en %{value} ms."
       result_count:
         one: "%{count} resultat."
         other: "%{count} resultats."
@@ -55,7 +53,7 @@ ca:
       query_description: "Descripció"
       query_time: "Darrera execució"
       query_user: "Creat per"
-      column: "Columna {{number}}"
+      column: "Columna %{number}"
       explain_label: "Hi incloem pla de consulta?"
       save_params: "Estableix valors per defecte"
       reset_params: "Reinicia"

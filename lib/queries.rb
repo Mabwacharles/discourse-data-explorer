@@ -406,11 +406,11 @@ class Queries
     SQL
 
     queries["assigned-topics-report"]["sql"] = <<~SQL
-      SELECT value::int user_id, topic_id
-      FROM topic_custom_fields tf
-      JOIN topics t on t.id = topic_id
-      JOIN users u on u.id = value::int
-        WHERE tf.name = 'assigned_to_id'
+      SELECT a.assigned_to_id user_id, a.topic_id
+      FROM assignments a
+      JOIN topics t on t.id = a.topic_id
+      JOIN users u on u.id = a.assigned_to_id
+        WHERE a.assigned_to_type = 'User'
          AND t.deleted_at IS NULL
       ORDER BY username, topic_id
     SQL
@@ -459,14 +459,14 @@ class Queries
     SQL
 
     queries["total-assigned-topics-report"]["sql"] = <<~SQL
-      SELECT value::int user_id,
+      SELECT a.assigned_to_id AS user_id,
       count(*)::varchar || ',/u/' || username_lower || '/activity/assigned' assigned_url
-      FROM topic_custom_fields tf
-      JOIN topics t on t.id = topic_id
-      JOIN users u on u.id = value::int
-      WHERE tf.name = 'assigned_to_id'
+      FROM assignments a
+      JOIN topics t on t.id = a.topic_id
+      JOIN users u on u.id = a.assigned_to_id
+      WHERE a.assigned_to_type = 'User'
         AND t.deleted_at IS NULL
-      GROUP BY value::int, username_lower
+      GROUP BY a.assigned_to_id, username_lower
       ORDER BY count(*) DESC, username_lower
     SQL
 
@@ -497,53 +497,53 @@ class Queries
     SQL
 
     queries["top-tags-per-year"]["sql"] = <<~SQL
-	-- [params]
-	-- integer :rank_max = 5
+  -- [params]
+  -- integer :rank_max = 5
 
-	WITH data AS (SELECT 
-	    tag_id,
-	    EXTRACT(YEAR FROM created_at) AS year
-	FROM topic_tags)
+  WITH data AS (SELECT
+      tag_id,
+      EXTRACT(YEAR FROM created_at) AS year
+  FROM topic_tags)
 
-	SELECT year, rank, name, qt FROM (
-	    SELECT 
-		tag_id,
-		COUNT(tag_id) AS qt,
-		year,
-		rank() OVER (PARTITION BY year ORDER BY COUNT(tag_id) DESC) AS rank    
-	    FROM
-		data
-	    GROUP BY year, tag_id) as rnk
-	INNER JOIN tags ON tags.id = rnk.tag_id
-	WHERE rank <= :rank_max
-	ORDER BY year DESC, qt DESC
+  SELECT year, rank, name, qt FROM (
+      SELECT
+    tag_id,
+    COUNT(tag_id) AS qt,
+    year,
+    rank() OVER (PARTITION BY year ORDER BY COUNT(tag_id) DESC) AS rank
+      FROM
+    data
+      GROUP BY year, tag_id) as rnk
+  INNER JOIN tags ON tags.id = rnk.tag_id
+  WHERE rank <= :rank_max
+  ORDER BY year DESC, qt DESC
     SQL
 
     queries["number_of_replies_by_category"]["sql"] = <<~SQL
-	-- [params]
-	-- boolean :enable_null_category = false
+  -- [params]
+  -- boolean :enable_null_category = false
 
-	WITH post AS (SELECT 
-	    id AS post_id,
-	    topic_id,
-	    EXTRACT(YEAR FROM created_at) AS year
-	FROM posts
-	WHERE post_type = 1
-	    AND deleted_at ISNULL
-	    AND post_number != 1)
-	    
-	SELECT 
-	    p.year,
-	    t.category_id AS id, 
-	    c.name category,
-	    COUNT(p.post_id) AS qt
-	FROM post p
-	INNER JOIN topics t ON t.id = p.topic_id
-	LEFT JOIN categories c ON c.id = t.category_id
-	WHERE t.deleted_at ISNULL
-	    AND (:enable_null_category = true OR t.category_id NOTNULL)
-	GROUP BY t.category_id, c.name, p.year
-	ORDER BY p.year DESC, qt DESC
+  WITH post AS (SELECT
+      id AS post_id,
+      topic_id,
+      EXTRACT(YEAR FROM created_at) AS year
+  FROM posts
+  WHERE post_type = 1
+      AND deleted_at ISNULL
+      AND post_number != 1)
+
+  SELECT
+      p.year,
+      t.category_id AS id,
+      c.name category,
+      COUNT(p.post_id) AS qt
+  FROM post p
+  INNER JOIN topics t ON t.id = p.topic_id
+  LEFT JOIN categories c ON c.id = t.category_id
+  WHERE t.deleted_at ISNULL
+      AND (:enable_null_category = true OR t.category_id NOTNULL)
+  GROUP BY t.category_id, c.name, p.year
+  ORDER BY p.year DESC, qt DESC
     SQL
 
   # convert query ids from "mostcommonlikers" to "-1", "mostmessages" to "-2" etc.
