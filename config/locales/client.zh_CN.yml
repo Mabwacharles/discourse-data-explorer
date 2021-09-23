@@ -1,9 +1,8 @@
-# encoding: utf-8
-#
-# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
 #
 # To work with us on translations, join this project:
-# https://www.transifex.com/projects/p/discourse-org/
+# https://translate.discourse.org/
 
 zh_CN:
   js:
@@ -25,11 +24,10 @@ zh_CN:
         title: "数据库结构"
         filter: "搜索"
         sensitive: "此列的内容可能含有敏感的或隐私的信息。请谨慎使用此列的内容。"
-        type_help: "<a href='http://www.postgresql.org/docs/9.3/static/datatype.html#DATATYPE-TABLE' target='_blank'>类型</a>"
       types:
         bool:
-          'yes': "是"
-          'no': "否"
+          yes: "是"
+          no: "否"
           null_: "空"
       export: "导出"
       save: "保存更改"
@@ -42,7 +40,7 @@ zh_CN:
       download_json: "JSON"
       download_csv: "CSV"
       others_dirty: "查询包含未保存的更改，如果您离开，这些更改将会丢失。"
-      run_time: "查询在{{value}}ms内完成。"
+      run_time: "在%{value}ms内完成了查询"
       result_count:
         other: "%{count}结果"
       max_result_count:
@@ -54,7 +52,7 @@ zh_CN:
       query_description: "描述"
       query_time: "最后运行"
       query_user: "创建于"
-      column: "列{{number}}"
+      column: "列 %{number}"
       explain_label: "包括查询计划？"
       save_params: "设置为默认"
       reset_params: "重置"

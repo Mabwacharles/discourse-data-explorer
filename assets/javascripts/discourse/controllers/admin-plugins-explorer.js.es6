@@ -4,13 +4,15 @@ import { popupAjaxError } from "discourse/lib/ajax-error";
 import { ajax } from "discourse/lib/ajax";
 import {
   default as computed,
-  observes
+  observes,
 } from "discourse-common/utils/decorators";
+import I18n from "I18n";
+import { Promise } from "rsvp";
 
 const NoQuery = Query.create({ name: "No queries", fake: true, group_ids: [] });
 
 export default Ember.Controller.extend({
-  queryParams: { selectedQueryId: "id" },
+  queryParams: { selectedQueryId: "id", params: "params" },
   selectedQueryId: null,
   editDisabled: false,
   showResults: false,
@@ -30,11 +32,21 @@ export default Ember.Controller.extend({
   sortBy: ["last_run_at:desc"],
   sortedQueries: Ember.computed.sort("model", "sortBy"),
 
+  @computed("params")
+  parsedParams(params) {
+    return params ? JSON.parse(params) : null;
+  },
+
+  @computed
+  acceptedImportFileTypes() {
+    return ["application/json"];
+  },
+
   @computed("search", "sortBy")
   filteredContent(search) {
     const regexp = new RegExp(search, "i");
     return this.sortedQueries.filter(
-      result => regexp.test(result.name) || regexp.test(result.description)
+      (result) => regexp.test(result.name) || regexp.test(result.description)
     );
   },
 
@@ -52,32 +64,31 @@ export default Ember.Controller.extend({
       ? this.set("showRecentQueries", false)
       : this.set("showRecentQueries", true);
 
-    if (id < 0) {
-      this.set("editDisabled", true);
-    }
-
     return item || NoQuery;
   },
 
   @computed("selectedItem", "editing")
   selectedGroupNames() {
     const groupIds = this.selectedItem.group_ids || [];
-    const groupNames = groupIds.map(id => {
-      return this.groupOptions.find(groupOption => groupOption.id === id).name;
+    const groupNames = groupIds.map((id) => {
+      return this.groupOptions.find((groupOption) => groupOption.id === id)
+        .name;
     });
     return groupNames.join(", ");
   },
 
   @computed("groups")
   groupOptions(groups) {
-    return groups.map(g => {
-      return { id: g.id.toString(), name: g.name };
-    });
+    return groups
+      .filter((g) => g.id !== 0)
+      .map((g) => {
+        return { id: g.id, name: g.name };
+      });
   },
 
   @computed("selectedItem", "selectedItem.dirty")
   othersDirty(selectedItem) {
-    return !!this.model.find(q => q !== selectedItem && q.dirty);
+    return !!this.model.find((q) => q !== selectedItem && q.dirty);
   },
 
   @observes("editing")
@@ -94,14 +105,15 @@ export default Ember.Controller.extend({
     this.setProperties({
       showResults: false,
       results: null,
-      editing: true
+      editing: true,
     });
   },
 
   save() {
     this.set("loading", true);
-    if (this.get("selectedItem.description") === "")
+    if (this.get("selectedItem.description") === "") {
       this.set("selectedItem.description", "");
+    }
 
     return this.selectedItem
       .save()
@@ -110,11 +122,41 @@ export default Ember.Controller.extend({
         query.markNotDirty();
         this.set("editing", false);
       })
-      .catch(x => {
+      .catch((x) => {
         popupAjaxError(x);
         throw x;
       })
       .finally(() => this.set("loading", false));
+  },
+
+  async _importQuery(file) {
+    const json = await this._readFileAsTextAsync(file);
+    const query = this._parseQuery(json);
+    const record = this.store.createRecord("query", query);
+    const response = await record.save();
+    return response.target;
+  },
+
+  _parseQuery(json) {
+    const parsed = JSON.parse(json);
+    const query = parsed.query;
+    if (!query || !query.sql) {
+      throw new TypeError();
+    }
+    query.id = 0; // 0 means no Id yet
+    return query;
+  },
+
+  _readFileAsTextAsync(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = reject;
+
+      reader.readAsText(file);
+    });
   },
 
   actions: {
@@ -124,9 +166,27 @@ export default Ember.Controller.extend({
       this.set("hideSchema", false);
     },
 
-    importQuery() {
-      showModal("import-query");
-      this.set("showCreate", false);
+    import(files) {
+      this.set("loading", true);
+      const file = files[0];
+      this._importQuery(file)
+        .then((record) => this.addCreatedRecord(record))
+        .catch((e) => {
+          if (e.jqXHR) {
+            popupAjaxError(e);
+          } else if (e instanceof SyntaxError) {
+            bootbox.alert(I18n.t("explorer.import.unparseable_json"));
+          } else if (e instanceof TypeError) {
+            bootbox.alert(I18n.t("explorer.import.wrong_json"));
+          } else {
+            bootbox.alert(I18n.t("errors.desc.unknown"));
+            // eslint-disable-next-line no-console
+            console.error(e);
+          }
+        })
+        .finally(() => {
+          this.set("loading", false);
+        });
     },
 
     showCreate() {
@@ -152,11 +212,16 @@ export default Ember.Controller.extend({
         order: null,
         showResults: false,
         editDisabled: false,
+        showRecentQueries: true,
         selectedQueryId: null,
-        sortBy: ["last_run_at:desc"]
+        params: null,
+        sortBy: ["last_run_at:desc"],
       });
-      this.send("refreshModel");
-      this.transitionToRoute("adminPlugins.explorer");
+      this.transitionToRoute({ queryParams: { id: null, params: null } });
+    },
+
+    showHelpModal() {
+      showModal("query-help");
     },
 
     resetParams() {
@@ -188,12 +253,12 @@ export default Ember.Controller.extend({
       this.setProperties({
         loading: true,
         showCreate: false,
-        showRecentQueries: false
+        showRecentQueries: false,
       });
       this.store
         .createRecord("query", { name })
         .save()
-        .then(result => this.addCreatedRecord(result.target))
+        .then((result) => this.addCreatedRecord(result.target))
         .catch(popupAjaxError)
         .finally(() => this.set("loading", false));
     },
@@ -202,11 +267,12 @@ export default Ember.Controller.extend({
       this.set("loading", true);
       this.store
         .find("query", this.get("selectedItem.id"))
-        .then(result => {
+        .then((result) => {
           const query = this.get("selectedItem");
           query.setProperties(result.getProperties(Query.updatePropertyNames));
-          if (!query.group_ids || !Array.isArray(query.group_ids))
+          if (!query.group_ids || !Array.isArray(query.group_ids)) {
             query.set("group_ids", []);
+          }
           query.markNotDirty();
           this.set("editing", false);
         })
@@ -244,7 +310,11 @@ export default Ember.Controller.extend({
         return;
       }
 
-      this.setProperties({ loading: true, showResults: false });
+      this.setProperties({
+        loading: true,
+        showResults: false,
+        params: JSON.stringify(this.selectedItem.params),
+      });
       ajax(
         "/admin/plugins/explorer/queries/" +
           this.get("selectedItem.id") +
@@ -253,11 +323,11 @@ export default Ember.Controller.extend({
           type: "POST",
           data: {
             params: JSON.stringify(this.get("selectedItem.params")),
-            explain: this.explain
-          }
+            explain: this.explain,
+          },
         }
       )
-        .then(result => {
+        .then((result) => {
           this.set("results", result);
           if (!result.success) {
             this.set("showResults", false);
@@ -266,7 +336,7 @@ export default Ember.Controller.extend({
 
           this.set("showResults", true);
         })
-        .catch(err => {
+        .catch((err) => {
           this.set("showResults", false);
           if (err.jqXHR && err.jqXHR.status === 422 && err.jqXHR.responseJSON) {
             this.set("results", err.jqXHR.responseJSON);
@@ -275,6 +345,6 @@ export default Ember.Controller.extend({
           }
         })
         .finally(() => this.set("loading", false));
-    }
-  }
+    },
+  },
 });

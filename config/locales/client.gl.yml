@@ -1,22 +1,26 @@
-# encoding: utf-8
-#
-# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
 #
 # To work with us on translations, join this project:
-# https://www.transifex.com/projects/p/discourse-org/
+# https://translate.discourse.org/
 
 gl:
   js:
     explorer:
       import:
         label: "Importar"
+      schema:
+        filter: "Buscar..."
       types:
         bool:
-          'yes': "Si"
-          'no': "Non"
+          yes: "Si"
+          no: "Non"
       export: "Exportar"
       save: "Gardar os cambios"
       edit: "Editar"
       delete: "Eliminar"
       query_groups: "Grupos"
       query_description: "Descrición"
+      search_placeholder: "Buscar..."
+    group:
+      reports: "Informes"
