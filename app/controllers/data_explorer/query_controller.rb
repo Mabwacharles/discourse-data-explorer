@@ -5,7 +5,14 @@ class DataExplorer::QueryController < ::ApplicationController
 
   before_action :set_group, only: %i(group_reports_index group_reports_show group_reports_run)
   before_action :set_query, only: %i(group_reports_show group_reports_run show update)
+  before_action :ensure_admin
+
   skip_before_action :check_xhr, only: %i(show group_reports_run run)
+  skip_before_action :ensure_admin, only: %i(
+    group_reports_index
+    group_reports_show
+    group_reports_run
+  )
 
   def index
     queries = DataExplorer::Query.where(hidden: false).order(:last_run_at, :name).includes(:groups).to_a
@@ -126,7 +133,6 @@ class DataExplorer::QueryController < ::ApplicationController
       response.sending_file = true
     end
 
-    params[:params] = params[:_params] if params[:_params] # testing workaround
     query_params = {}
     query_params = MultiJson.load(params[:params]) if params[:params]
 
@@ -181,7 +187,7 @@ class DataExplorer::QueryController < ::ApplicationController
             result_count: pg_result.values.length || 0,
             params: query_params,
             columns: cols,
-            default_limit: DataExplorer::QUERY_RESULT_DEFAULT_LIMIT
+            default_limit: SiteSetting.data_explorer_query_result_limit
           }
           json[:explain] = result[:explain] if opts[:explain]
 
