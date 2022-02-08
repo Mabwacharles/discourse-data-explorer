@@ -4,7 +4,7 @@ import {
   query,
   queryAll,
 } from "discourse/tests/helpers/qunit-helpers";
-import { click, fillIn, visit } from "@ember/test-helpers";
+import { click, currentURL, fillIn, visit } from "@ember/test-helpers";
 import { clearPopupMenuOptionsCallback } from "discourse/controllers/composer";
 import I18n from "I18n";
 import { test } from "qunit";
@@ -117,6 +117,26 @@ acceptance("Data Explorer Plugin | Run Query", function (needs) {
             hidden: false,
             user_id: -1,
           },
+          {
+            id: -7,
+            sql: "-- [params]\n-- user_id :user\n\nSELECT :user_id\n\n",
+            name: "Invalid Query",
+            description: "",
+            param_info: [
+              {
+                identifier: "user",
+                type: "user_id",
+                default: null,
+                nullable: false,
+              },
+            ],
+            created_at: "2022-01-14T16:40:05.458Z",
+            username: "bianca",
+            group_ids: [],
+            last_run_at: "2022-01-14T16:47:34.244Z",
+            hidden: false,
+            user_id: 1,
+          },
         ],
       });
     });
@@ -200,5 +220,11 @@ acceptance("Data Explorer Plugin | Run Query", function (needs) {
     let searchParams = new URLSearchParams(currentURL());
     let paramsMonthsAgo = JSON.parse(searchParams.get("params")).months_ago;
     assert.equal(paramsMonthsAgo, monthsAgoValue);
+  });
+
+  test("it loads the page if one of the parameter is null", async function (assert) {
+    await visit('admin/plugins/explorer?id=-7&params={"user":null}');
+    assert.ok(exists(".query-params .user-chooser"));
+    assert.ok(exists(".query-run .btn.btn-primary"));
   });
 });

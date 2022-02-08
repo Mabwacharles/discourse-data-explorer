@@ -1,8 +1,6 @@
 import I18n from "I18n";
 import { default as computed } from "discourse-common/utils/decorators";
-// import Category from 'discourse/models/category';
-
-const Category = Discourse.Category;
+import Category from "discourse/models/category";
 
 const layoutMap = {
   int: "int",
@@ -58,7 +56,7 @@ export default Ember.Component.extend({
       return this.params[this.get("info.identifier")];
     },
     set(key, value) {
-      this.params[this.get("info.identifier")] = value.toString();
+      this.params[this.get("info.identifier")] = value?.toString();
       return value;
     },
   }),
